@@ -2,10 +2,11 @@ package com.apptanium.apps.mailserver.om;
 
 
 import com.apptanium.apps.mailserver.repositories.IdGeneratorStrategy;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
+import java.util.Date;
+
 
 /**
  * This is the basic message object: it is composed by users, and has labels, attachments, and other
@@ -13,16 +14,22 @@ import javax.persistence.PrePersist;
  *
  * Created by sgupta on 12/28/14.
  */
-@Entity
 public class Message {
 
   @Id
-  private String id;
+  private final String id;
 
-  @PrePersist
-  public void generateId() {
-    if(this.id == null) {
-      id = IdGeneratorStrategy.generateId();
-    }
+  @Indexed
+  private Date date;
+
+  private Message() {
+    this.id = null;
   }
+
+  public Message(String id) {
+    this.id = id;
+  }
+
+
+
 }

@@ -1,22 +1,32 @@
 package com.apptanium.apps.mailserver.om;
 
 import com.apptanium.apps.mailserver.repositories.IdGeneratorStrategy;
+import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by sgupta on 12/28/14.
  */
-@Entity
 public class Label {
 
   @Id
-  private String id;
+  private final String id;
 
   private String name;
 
+  private Label() {
+    this.id = null;
+  }
+
+  public Label(@NotNull String id) {
+    this.id = id;
+  }
+
+  public Label(@NotNull String id, @NotNull String name) {
+    this(id);
+    this.name = name;
+  }
 
 
   public String getId() {
@@ -31,10 +41,4 @@ public class Label {
     return name;
   }
 
-  @PrePersist
-  public void generateId() {
-    if(this.id == null) {
-      id = IdGeneratorStrategy.generateId();
-    }
-  }
 }

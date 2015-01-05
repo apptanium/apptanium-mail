@@ -24,6 +24,21 @@
 		<java.version>1.8</java.version>
 	</properties>
 
+	<repositories>
+		<!-- Necessary for Spring Cloud.  Hopefully not needed after Spring Cloud version > 1 -->
+		<repository>
+			<id>org.springframework.maven.milestone</id>
+			<name>Spring Maven Milestone Repository</name>
+			<url>http://repo.spring.io/milestone</url>
+		</repository>
+
+		<!-- Necessary for spring-data-dynamodb-->
+		<repository>
+			<id>opensourceagility-release</id>
+			<url>http://repo.opensourceagility.com/release</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
 <!--
 		<dependency>
@@ -32,6 +47,11 @@
 		</dependency>
 -->
 		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
@@ -39,9 +59,47 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
+<!--
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.socialsignin</groupId>
+			<artifactId>spring-data-dynamodb</artifactId>
+			<version>1.0.1.RELEASE</version>
+		</dependency>
+
+		<!-- Makes working with various clouds easier: -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-service-connector</artifactId>
+			<version>0.9.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>cloudfoundry-connector</artifactId>
+			<version>0.9.2</version>
+		</dependency>
+
+		<!-- External libraries -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.8</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.1</version>
 		</dependency>
 
 		<!-- Test Dependencies -->
